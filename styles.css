@@ -100,6 +100,26 @@ h2 {
   margin-top: 0;
 }
 
+/* week 2 - search box and category dropdown above the product grid */
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.filters input,
+.filters select {
+  padding: 8px 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.filters input {
+  flex: 1;
+}
+
 .products {
   display: flex;
   flex-wrap: wrap;
@@ -197,6 +217,125 @@ h2 {
 .add:hover {
   background-color: #2d6a4f;
   color: #ffffff;
+}
+
+/* week 2 - quantity input and running subtotal on each card */
+.qty-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  border-top: 1px solid #eeeeee;
+  padding-top: 10px;
+}
+
+.qty-row label {
+  font-size: 13px;
+  color: #666666;
+}
+
+.qty {
+  width: 55px;
+  padding: 4px 6px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+.subtotal {
+  margin: 0;
+  font-size: 13px;
+  font-weight: bold;
+  color: #1b4332;
+}
+
+.no-results {
+  display: none;
+  text-align: center;
+  color: #888888;
+  padding: 20px;
+}
+
+.cart-total {
+  text-align: right;
+  font-size: 18px;
+  font-weight: bold;
+  color: #1b4332;
+  border-top: 2px solid #d8e2dc;
+  margin-top: 20px;
+  padding-top: 12px;
+}
+
+/* week 3 - registration form */
+.register-form {
+  max-width: 380px;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.field {
+  margin-bottom: 16px;
+}
+
+.field label {
+  display: block;
+  font-size: 13px;
+  color: #444444;
+  margin-bottom: 4px;
+}
+
+.field input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.password-wrap {
+  display: flex;
+  gap: 8px;
+}
+
+.password-wrap input {
+  flex: 1;
+}
+
+.toggle-btn {
+  background-color: #ffffff;
+  border: 1px solid #2d6a4f;
+  color: #2d6a4f;
+  border-radius: 4px;
+  padding: 0 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.toggle-btn:hover {
+  background-color: #2d6a4f;
+  color: #ffffff;
+}
+
+.error-message {
+  display: none;
+  color: #bc4b26;
+  font-size: 12px;
+  margin: 5px 0 0 0;
+}
+
+.success-message {
+  display: none;
+  background-color: #e8f3ec;
+  color: #1b4332;
+  border: 1px solid #b7d9c4;
+  border-radius: 4px;
+  padding: 10px;
+  margin-top: 14px;
+  font-size: 14px;
 }
 
 /* footer */

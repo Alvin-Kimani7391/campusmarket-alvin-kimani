@@ -25,9 +25,21 @@
     <h2>Products on sale</h2>
     <p class="count">6 items listed</p>
 
+    <!-- search and category filter, both call filterProducts() in app.js -->
+    <div class="filters">
+      <input type="text" id="search" placeholder="Search products..." oninput="filterProducts()">
+      <select id="categoryFilter" onchange="filterProducts()">
+        <option value="all">All categories</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Books">Books</option>
+        <option value="Hostel">Hostel</option>
+        <option value="Clothing">Clothing</option>
+      </select>
+    </div>
+
     <section class="products">
 
-      <article class="product">
+      <article class="product" data-name="Scientific Calculator" data-category="Electronics" data-price="1140">
         <span class="discount">-5%</span>
         <img src="images/calculator.jpeg" alt="Scientific calculator">
         <h3>Scientific Calculator</h3>
@@ -38,11 +50,15 @@
             <span class="old-price">KSh 1,200</span>
             <span class="price">KSh 1,140</span>
           </p>
-          <button class="add">+</button>
+        </div>
+        <div class="qty-row">
+          <label for="qty-1">Qty</label>
+          <input type="number" id="qty-1" class="qty" min="0" value="0" oninput="updateSubtotal(this)">
+          <p class="subtotal">Subtotal: KSh 0</p>
         </div>
       </article>
 
-      <article class="product">
+      <article class="product" data-name="Discrete Mathematics Textbook" data-category="Books" data-price="700">
         <span class="discount">-12%</span>
         <img src="images/textbook.jpg" alt="Discrete mathematics textbook">
         <h3>Discrete Mathematics Textbook</h3>
@@ -53,11 +69,15 @@
             <span class="old-price">KSh 800</span>
             <span class="price">KSh 700</span>
           </p>
-          <button class="add">+</button>
+        </div>
+        <div class="qty-row">
+          <label for="qty-2">Qty</label>
+          <input type="number" id="qty-2" class="qty" min="0" value="0" oninput="updateSubtotal(this)">
+          <p class="subtotal">Subtotal: KSh 0</p>
         </div>
       </article>
 
-      <article class="product">
+      <article class="product" data-name="Electric Kettle" data-category="Hostel" data-price="1400">
         <span class="discount">-7%</span>
         <img src="images/kettle.webp" alt="Electric kettle">
         <h3>Electric Kettle</h3>
@@ -68,11 +88,15 @@
             <span class="old-price">KSh 1,500</span>
             <span class="price">KSh 1,400</span>
           </p>
-          <button class="add">+</button>
+        </div>
+        <div class="qty-row">
+          <label for="qty-3">Qty</label>
+          <input type="number" id="qty-3" class="qty" min="0" value="0" oninput="updateSubtotal(this)">
+          <p class="subtotal">Subtotal: KSh 0</p>
         </div>
       </article>
 
-      <article class="product">
+      <article class="product" data-name="White Lab Coat" data-category="Clothing" data-price="600">
         <span class="discount">-8%</span>
         <img src="images/labcoat.jpg" alt="White lab coat">
         <h3>White Lab Coat</h3>
@@ -83,11 +107,15 @@
             <span class="old-price">KSh 650</span>
             <span class="price">KSh 600</span>
           </p>
-          <button class="add">+</button>
+        </div>
+        <div class="qty-row">
+          <label for="qty-4">Qty</label>
+          <input type="number" id="qty-4" class="qty" min="0" value="0" oninput="updateSubtotal(this)">
+          <p class="subtotal">Subtotal: KSh 0</p>
         </div>
       </article>
 
-      <article class="product">
+      <article class="product" data-name="USB Flash Drive 64GB" data-category="Electronics" data-price="630">
         <span class="discount">-10%</span>
         <img src="images/flash.jpg" alt="64GB USB flash drive">
         <h3>USB Flash Drive 64GB</h3>
@@ -98,11 +126,15 @@
             <span class="old-price">KSh 700</span>
             <span class="price">KSh 630</span>
           </p>
-          <button class="add">+</button>
+        </div>
+        <div class="qty-row">
+          <label for="qty-5">Qty</label>
+          <input type="number" id="qty-5" class="qty" min="0" value="0" oninput="updateSubtotal(this)">
+          <p class="subtotal">Subtotal: KSh 0</p>
         </div>
       </article>
 
-      <article class="product">
+      <article class="product" data-name="Study Desk Lamp" data-category="Hostel" data-price="900">
         <span class="discount">-5%</span>
         <img src="images/lamp.jpg" alt="Study desk lamp">
         <h3>Study Desk Lamp</h3>
@@ -113,11 +145,19 @@
             <span class="old-price">KSh 950</span>
             <span class="price">KSh 900</span>
           </p>
-          <button class="add">+</button>
+        </div>
+        <div class="qty-row">
+          <label for="qty-6">Qty</label>
+          <input type="number" id="qty-6" class="qty" min="0" value="0" oninput="updateSubtotal(this)">
+          <p class="subtotal">Subtotal: KSh 0</p>
         </div>
       </article>
 
     </section>
+
+    <p id="noResults" class="no-results">No products match your search.</p>
+
+    <p id="cartTotal" class="cart-total">Cart total: KSh 0</p>
 
   </main>
 
@@ -125,5 +165,6 @@
     <p>CampusMarket &copy; 2026 </p>
   </footer>
 
+  <script src="app.js"></script>
 </body>
 </html>
