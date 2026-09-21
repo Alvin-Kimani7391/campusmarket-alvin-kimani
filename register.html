@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusMarket - Register</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header>
+    <h1>CampusMarket</h1>
+    <p class="tagline">Buy and sell within campus</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="catalog.html">Catalog</a></li>
+      <li><a href="register.html">Register</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <h2>Create an account</h2>
+    <p class="count">Use your student email to sign up.</p>
+
+    <form id="registerForm" class="register-form" novalidate>
+
+      <div class="field">
+        <label for="fullName">Full name</label>
+        <input type="text" id="fullName" name="fullName">
+        <p class="error-message" id="nameError"></p>
+      </div>
+
+      <div class="field">
+        <label for="email">Student email</label>
+        <input type="text" id="email" name="email">
+        <p class="error-message" id="emailError"></p>
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <div class="password-wrap">
+          <input type="password" id="password" name="password">
+          <button type="button" id="togglePassword" class="toggle-btn">Show</button>
+        </div>
+        <p class="error-message" id="passwordError"></p>
+      </div>
+
+      <div class="field">
+        <label for="confirmPassword">Confirm password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword">
+        <p class="error-message" id="confirmError"></p>
+      </div>
+
+      <button type="submit" class="button">Create account</button>
+
+      <p class="success-message" id="successMessage">Account created. Welcome to CampusMarket.</p>
+
+    </form>
+
+  </main>
+
+  <footer>
+    <p>CampusMarket &copy; 2026 </p>
+  </footer>
+
+  <script src="register.js"></script>
+</body>
+</html>
