@@ -1,80 +1,95 @@
 // register.js
-// CampusMarket - Week 3
-// Validates the registration form and handles the show/hide password toggle.
-// Everything here is attached with addEventListener, no onclick in the HTML.
+// Registration form. Every message says exactly what is wrong, errors fade in
+// with a CSS transition, and a successful submit plays a keyframe animation.
 
 var form = document.getElementById("registerForm");
-var successMessage = document.getElementById("successMessage");
+var successBox = document.getElementById("successMessage");
+
+function nameProblem(v) {
+  if (v === "") { return "Full name is required."; }
+  if (v.indexOf(" ") === -1) { return "Please enter your first and last name."; }
+  return "";
+}
+
+function emailProblem(v) {
+  if (v === "") { return "Email is required - type your student email."; }
+  var at = v.indexOf("@");
+  if (at === -1) { return "Email must contain an @ symbol."; }
+  if (at !== v.lastIndexOf("@")) { return "Email can only contain one @ symbol."; }
+  if (v.indexOf(" ") !== -1) { return "Email cannot contain spaces."; }
+  if (at === 0) { return "Add your username before the @."; }
+  var domain = v.slice(at + 1);
+  if (domain.indexOf(".") === -1) { return "Email needs a domain after the @, like name@university.ac.ke."; }
+  if (domain.charAt(0) === "." || domain.charAt(domain.length - 1) === ".") { return "The part after the @ looks incomplete."; }
+  return "";
+}
+
+function passwordProblem(v) {
+  if (v === "") { return "Password is required."; }
+  if (v.length < 8) { return "Password must be at least 8 characters - yours has " + v.length + "."; }
+  if (!/[0-9]/.test(v)) { return "Password must include at least one number."; }
+  return "";
+}
+
+function confirmProblem(v) {
+  if (v === "") { return "Please confirm your password."; }
+  if (v !== document.getElementById("password").value) { return "Passwords do not match - retype the same password."; }
+  return "";
+}
+
+var fields = [
+  { id: "fullName", errorId: "nameError", check: nameProblem },
+  { id: "email", errorId: "emailError", check: emailProblem },
+  { id: "password", errorId: "passwordError", check: passwordProblem },
+  { id: "confirmPassword", errorId: "confirmError", check: confirmProblem }
+];
+
+function checkField(f) {
+  var input = document.getElementById(f.id);
+  var box = document.getElementById(f.errorId);
+  var value = (f.id === "password" || f.id === "confirmPassword") ? input.value : input.value.trim();
+  var problem = f.check(value);
+  if (problem !== "") {
+    showMsg(box, problem);
+    input.classList.add("invalid");
+    return false;
+  }
+  hideMsg(box);
+  input.classList.remove("invalid");
+  return true;
+}
 
 form.addEventListener("submit", function (event) {
-  event.preventDefault(); // stop the page from reloading before we check anything
+  event.preventDefault();   // stop the reload so we can validate first
+  successBox.classList.remove("celebrate");
 
-  var fullName = document.getElementById("fullName").value.trim();
-  var email = document.getElementById("email").value.trim();
-  var password = document.getElementById("password").value;
-  var confirmPassword = document.getElementById("confirmPassword").value;
-
-  // clear old messages before checking again
-  clearErrors();
-  successMessage.style.display = "none";
-
-  var isValid = true;
-
-  // check 1: required field, name cannot be empty
-  if (fullName === "") {
-    showError("nameError", "Please enter your full name.");
-    isValid = false;
+  var allGood = true;
+  for (var i = 0; i < fields.length; i++) {
+    if (!checkField(fields[i])) {
+      allGood = false;
+    }
   }
 
-  // check 2: format check, needs to look like an email
-  var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (email === "") {
-    showError("emailError", "Please enter your student email.");
-    isValid = false;
-  } else if (!emailPattern.test(email)) {
-    showError("emailError", "That doesn't look like a valid email address.");
-    isValid = false;
-  }
-
-  // check 3 (required field again, on password): can't be empty either
-  if (password === "") {
-    showError("passwordError", "Please enter a password.");
-    isValid = false;
-  } else if (password.length < 6) {
-    showError("passwordError", "Password should be at least 6 characters.");
-    isValid = false;
-  }
-
-  // check 4: custom rule, the two password fields must match
-  if (password !== "" && confirmPassword !== password) {
-    showError("confirmError", "Passwords do not match.");
-    isValid = false;
-  }
-
-  if (isValid) {
-    successMessage.style.display = "block";
+  if (allGood) {
     form.reset();
+    void successBox.offsetWidth;
+    successBox.classList.add("celebrate");   // animation only runs after a valid submit
   }
 });
 
-function showError(elementId, message) {
-  var errorBox = document.getElementById(elementId);
-  errorBox.textContent = message;
-  errorBox.style.display = "block";
+// once a field is showing an error, re-check it as the user fixes it
+for (var i = 0; i < fields.length; i++) {
+  (function (f) {
+    document.getElementById(f.id).addEventListener("input", function () {
+      if (document.getElementById(f.errorId).classList.contains("show")) {
+        checkField(f);
+      }
+    });
+  })(fields[i]);
 }
 
-function clearErrors() {
-  var errorBoxes = document.getElementsByClassName("error-message");
-  for (var i = 0; i < errorBoxes.length; i++) {
-    errorBoxes[i].textContent = "";
-    errorBoxes[i].style.display = "none";
-  }
-}
-
-// interactive UI element: toggle the password field between hidden and visible text
 var toggleButton = document.getElementById("togglePassword");
 var passwordField = document.getElementById("password");
-
 toggleButton.addEventListener("click", function () {
   if (passwordField.type === "password") {
     passwordField.type = "text";
