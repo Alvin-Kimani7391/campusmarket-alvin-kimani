@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusMarket - Cart</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="features.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand"><span class="logo" aria-hidden="true">CM</span><span class="brand-text"><strong>CampusMarket</strong><small>STUDENT &middot; MARKETPLACE</small></span></a>
+      <form class="site-search" id="siteSearch" role="search">
+        <label class="sr-only" for="search">Search products, categories and brands</label>
+        <input type="search" id="search" placeholder="Search products and categories..." autocomplete="off">
+        <button type="submit" aria-label="Search"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-4.3-4.3"/></svg></button>
+      </form>
+      <nav class="header-actions" aria-label="Main">
+        <a href="index.html" class="hdr-link"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></a>
+        <a href="catalog.html" class="hdr-link"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg><span>Catalog</span></a>
+        <a href="register.html" class="hdr-link"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0"/></svg><span>Account</span></a>
+        <a href="cart.html" class="hdr-link" aria-current="page"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11h10.2L20 7H6M9 20h.01M17 20h.01"/></svg><span>Cart</span><b id="cartCount" class="badge">0</b></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h2>Your cart</h2>
+
+    <section id="cartItems" aria-label="Items in your cart"></section>
+
+    <p id="emptyMsg" class="no-results">Your cart is empty. <a href="catalog.html">Browse the catalog</a></p>
+
+    <section id="cartSummary" class="summary">
+      <p id="excludedNote" class="error-message"></p>
+      <p id="cartTotal" class="cart-total">Total: KSh 0</p>
+      <button type="button" id="clearBtn" class="clear-btn">Clear cart</button>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>CampusMarket &copy; 2026 &middot; Buy and sell within campus</p>
+  </footer>
+
+  <script src="products.js"></script>
+  <script src="shared.js"></script>
+  <script src="cartpage.js"></script>
+</body>
+</html>
