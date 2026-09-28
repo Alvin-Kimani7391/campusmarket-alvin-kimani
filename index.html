@@ -5,59 +5,74 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CampusMarket - Home</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="features.css">
 </head>
 <body>
-
-  <header>
-    <h1>CampusMarket</h1>
-    <p class="tagline">Buy and sell within campus</p>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand"><span class="logo" aria-hidden="true">CM</span><span class="brand-text"><strong>CampusMarket</strong><small>STUDENT &middot; MARKETPLACE</small></span></a>
+      <form class="site-search" id="siteSearch" role="search">
+        <label class="sr-only" for="search">Search products, categories and brands</label>
+        <input type="search" id="search" placeholder="Search products and categories..." autocomplete="off">
+        <button type="submit" aria-label="Search"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-4.3-4.3"/></svg></button>
+      </form>
+      <nav class="header-actions" aria-label="Main">
+        <a href="index.html" class="hdr-link" aria-current="page"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></a>
+        <a href="catalog.html" class="hdr-link"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg><span>Catalog</span></a>
+        <a href="register.html" class="hdr-link"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0"/></svg><span>Account</span></a>
+        <a href="cart.html" class="hdr-link"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11h10.2L20 7H6M9 20h.01M17 20h.01"/></svg><span>Cart</span><b id="cartCount" class="badge">0</b></a>
+      </nav>
+    </div>
   </header>
-
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="catalog.html">Catalog</a></li>
-      <li><a href="register.html">Register</a></li>
-    </ul>
-  </nav>
-
   <main>
-
-    <section class="intro">
-      <h2>Welcome</h2>
-      <p>
-        CampusMarket is a small online marketplace for students in our university.
-        Instead of posting items in random WhatsApp groups, you can list what you
-        are selling here and other students can find it in one place.
-      </p>
-      <p>
-        Calculators, second hand textbooks, kettles, hoodies, lab coats - things
-        students actually need and things students are done using .
-      </p>
-      <a class="button" href="catalog.html">See what is on sale</a>
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero-text">
+        <p class="eyebrow">Made for students, by students</p>
+        <h1 id="heroTitle">Buy and sell within campus.</h1>
+        <p>CampusMarket is a small online marketplace for students in our university. Instead of posting items in random WhatsApp groups, list what you are selling here and let other students find it in one place.</p>
+        <p>Calculators, second hand textbooks, kettles, hoodies, lab coats - things students actually need and things students are done using.</p>
+      </div>
+      <div class="hero-shots">
+        <div class="shots">
+          <figure>
+            <img src="images/calculator.jpeg" alt="Black Casio fx-991 scientific calculator with its slide-on cover">
+            <figcaption>Scientific Calculator<strong>KSh 1,140</strong></figcaption>
+          </figure>
+          <figure>
+            <img src="images/textbook.jpg" alt="Discrete Mathematics textbook by Rosen, 7th edition, lying flat">
+            <figcaption>Discrete Maths Textbook<strong>KSh 700</strong></figcaption>
+          </figure>
+          <figure>
+            <img src="images/lamp.jpg" alt="Small LED study desk lamp with a bendable neck">
+            <figcaption>Study Desk Lamp<strong>KSh 900</strong></figcaption>
+          </figure>
+        </div>
+        <a class="hero-cta" href="catalog.html">See what is on sale <span aria-hidden="true">&rarr;</span></a>
+      </div>
     </section>
-
-    <section class="how">
+    <section class="categories" aria-labelledby="catTitle">
+      <h2 id="catTitle">Shop by category</h2>
+      <div class="cat-grid">
+        <a href="catalog.html?cat=Electronics"><strong>Electronics</strong><span>Calculators, flash drives</span></a>
+        <a href="catalog.html?cat=Books"><strong>Books</strong><span>Second hand textbooks</span></a>
+        <a href="catalog.html?cat=Hostel"><strong>Hostel</strong><span>Kettles, lamps, room basics</span></a>
+        <a href="catalog.html?cat=Clothing"><strong>Clothing</strong><span>Lab coats and more</span></a>
+      </div>
+    </section>
+    <section class="how" id="how">
       <h2>How it works</h2>
-      <ul class="steps">
-        <li>Create an account with your student email.</li>
-        <li>Browse the catalog or search for an item.</li>
-        <li>Add what you want to your cart.</li>
-        <li>Meet the seller on campus and collect your item.</li>
-      </ul>
+      <ol class="steps">
+        <li><strong>Create an account</strong>Sign up with your student email.</li>
+        <li><strong>Browse and search</strong>Use the search bar or the catalog filters.</li>
+        <li><strong>Add to your cart</strong>Pick a quantity and add what you want.</li>
+        <li><strong>Meet on campus</strong>Collect your item from the seller.</li>
+      </ol>
     </section>
-
-    
-
-
-
-    
-
   </main>
-
-  <footer>
-    <p>CampusMarket &copy; 2026 </p>
+  <footer class="site-footer">
+    <p>CampusMarket &copy; 2026 &middot; Buy and sell within campus</p>
   </footer>
-
+  <script src="products.js"></script>
+  <script src="shared.js"></script>
 </body>
 </html>
