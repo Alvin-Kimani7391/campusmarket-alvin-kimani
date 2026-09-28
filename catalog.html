@@ -5,167 +5,70 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CampusMarket - Catalog</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="features.css">
 </head>
 <body>
 
-  <header>
-    <h1>CampusMarket</h1>
-    <p class="tagline">Buy and sell within campus</p>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand"><span class="logo" aria-hidden="true">CM</span><span class="brand-text"><strong>CampusMarket</strong><small>STUDENT &middot; MARKETPLACE</small></span></a>
+      <form class="site-search" id="siteSearch" role="search">
+        <label class="sr-only" for="search">Search products, categories and brands</label>
+        <input type="search" id="search" placeholder="Search products and categories..." autocomplete="off">
+        <button type="submit" aria-label="Search"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-4.3-4.3"/></svg></button>
+      </form>
+      <nav class="header-actions" aria-label="Main">
+        <a href="index.html" class="hdr-link"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></a>
+        <a href="catalog.html" class="hdr-link" aria-current="page"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg><span>Catalog</span></a>
+        <a href="register.html" class="hdr-link"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0"/></svg><span>Account</span></a>
+        <a href="cart.html" class="hdr-link"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11h10.2L20 7H6M9 20h.01M17 20h.01"/></svg><span>Cart</span><b id="cartCount" class="badge">0</b></a>
+      </nav>
+    </div>
   </header>
-
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="catalog.html">Catalog</a></li>
-      <li><a href="register.html">Register</a></li>
-    </ul>
-  </nav>
 
   <main>
 
     <h2>Products on sale</h2>
-    <p class="count">6 items listed</p>
-
-    <!-- search and category filter, both call filterProducts() in app.js -->
-    <div class="filters">
-      <input type="text" id="search" placeholder="Search products..." oninput="filterProducts()">
-      <select id="categoryFilter" onchange="filterProducts()">
+    <section class="filters" aria-label="Filter products">
+      <label for="categoryFilter">Category</label>
+      <select id="categoryFilter">
         <option value="all">All categories</option>
         <option value="Electronics">Electronics</option>
         <option value="Books">Books</option>
         <option value="Hostel">Hostel</option>
         <option value="Clothing">Clothing</option>
       </select>
-    </div>
-
-    <section class="products">
-
-      <article class="product" data-name="Scientific Calculator" data-category="Electronics" data-price="1140">
-        <span class="discount">-5%</span>
-        <img src="images/calculator.jpeg" alt="Scientific calculator">
-        <h3>Scientific Calculator</h3>
-        <p class="category">Electronics</p>
-        <p class="description">Casio fx-991, used two semesters, cover still on.</p>
-        <div class="price-row">
-          <p class="prices">
-            <span class="old-price">KSh 1,200</span>
-            <span class="price">KSh 1,140</span>
-          </p>
-        </div>
-        <div class="qty-row">
-          <label for="qty-1">Qty</label>
-          <input type="number" id="qty-1" class="qty" min="0" value="0" oninput="updateSubtotal(this)">
-          <p class="subtotal">Subtotal: KSh 0</p>
-        </div>
-      </article>
-
-      <article class="product" data-name="Discrete Mathematics Textbook" data-category="Books" data-price="700">
-        <span class="discount">-12%</span>
-        <img src="images/textbook.jpg" alt="Discrete mathematics textbook">
-        <h3>Discrete Mathematics Textbook</h3>
-        <p class="category">Books</p>
-        <p class="description">Rosen 7th edition, only chapter one highlighted.</p>
-        <div class="price-row">
-          <p class="prices">
-            <span class="old-price">KSh 800</span>
-            <span class="price">KSh 700</span>
-          </p>
-        </div>
-        <div class="qty-row">
-          <label for="qty-2">Qty</label>
-          <input type="number" id="qty-2" class="qty" min="0" value="0" oninput="updateSubtotal(this)">
-          <p class="subtotal">Subtotal: KSh 0</p>
-        </div>
-      </article>
-
-      <article class="product" data-name="Electric Kettle" data-category="Hostel" data-price="1400">
-        <span class="discount">-7%</span>
-        <img src="images/kettle.webp" alt="Electric kettle">
-        <h3>Electric Kettle</h3>
-        <p class="category">Hostel</p>
-        <p class="description">1.7 litres, boils fast, moving out of hostel.</p>
-        <div class="price-row">
-          <p class="prices">
-            <span class="old-price">KSh 1,500</span>
-            <span class="price">KSh 1,400</span>
-          </p>
-        </div>
-        <div class="qty-row">
-          <label for="qty-3">Qty</label>
-          <input type="number" id="qty-3" class="qty" min="0" value="0" oninput="updateSubtotal(this)">
-          <p class="subtotal">Subtotal: KSh 0</p>
-        </div>
-      </article>
-
-      <article class="product" data-name="White Lab Coat" data-category="Clothing" data-price="600">
-        <span class="discount">-8%</span>
-        <img src="images/labcoat.jpg" alt="White lab coat">
-        <h3>White Lab Coat</h3>
-        <p class="category">Clothing</p>
-        <p class="description">Size M, washed and ironed, fits chem and bio labs.</p>
-        <div class="price-row">
-          <p class="prices">
-            <span class="old-price">KSh 650</span>
-            <span class="price">KSh 600</span>
-          </p>
-        </div>
-        <div class="qty-row">
-          <label for="qty-4">Qty</label>
-          <input type="number" id="qty-4" class="qty" min="0" value="0" oninput="updateSubtotal(this)">
-          <p class="subtotal">Subtotal: KSh 0</p>
-        </div>
-      </article>
-
-      <article class="product" data-name="USB Flash Drive 64GB" data-category="Electronics" data-price="630">
-        <span class="discount">-10%</span>
-        <img src="images/flash.jpg" alt="64GB USB flash drive">
-        <h3>USB Flash Drive 64GB</h3>
-        <p class="category">Electronics</p>
-        <p class="description">Sandisk, brand new and still sealed in the pack.</p>
-        <div class="price-row">
-          <p class="prices">
-            <span class="old-price">KSh 700</span>
-            <span class="price">KSh 630</span>
-          </p>
-        </div>
-        <div class="qty-row">
-          <label for="qty-5">Qty</label>
-          <input type="number" id="qty-5" class="qty" min="0" value="0" oninput="updateSubtotal(this)">
-          <p class="subtotal">Subtotal: KSh 0</p>
-        </div>
-      </article>
-
-      <article class="product" data-name="Study Desk Lamp" data-category="Hostel" data-price="900">
-        <span class="discount">-5%</span>
-        <img src="images/lamp.jpg" alt="Study desk lamp">
-        <h3>Study Desk Lamp</h3>
-        <p class="category">Hostel</p>
-        <p class="description">LED lamp, three brightness levels, good for late nights.</p>
-        <div class="price-row">
-          <p class="prices">
-            <span class="old-price">KSh 950</span>
-            <span class="price">KSh 900</span>
-          </p>
-        </div>
-        <div class="qty-row">
-          <label for="qty-6">Qty</label>
-          <input type="number" id="qty-6" class="qty" min="0" value="0" oninput="updateSubtotal(this)">
-          <p class="subtotal">Subtotal: KSh 0</p>
-        </div>
-      </article>
-
+      <p class="count" id="count"></p>
     </section>
+
+    <section class="gallery" id="gallery" tabindex="0" aria-label="Gallery of the products currently shown">
+      <figure>
+        <img id="galleryImg" src="images/calculator.jpeg" alt="Product photo">
+        <figcaption id="galleryCaption"></figcaption>
+      </figure>
+      <div class="gallery-controls">
+        <button type="button" id="galleryPrev" aria-label="Previous picture">&larr;</button>
+        <span id="galleryCount"></span>
+        <button type="button" id="galleryNext" aria-label="Next picture">&rarr;</button>
+      </div>
+    </section>
+
+    <section class="products" id="productGrid" aria-label="Products"></section>
 
     <p id="noResults" class="no-results">No products match your search.</p>
 
-    <p id="cartTotal" class="cart-total">Cart total: KSh 0</p>
+    <p id="selectionTotal" class="cart-total">Selected on this page: KSh 0</p>
+    <p class="cart-link"><a class="button" href="cart.html">Go to cart</a></p>
 
   </main>
 
-  <footer>
-    <p>CampusMarket &copy; 2026 </p>
+  <footer class="site-footer">
+    <p>CampusMarket &copy; 2026 &middot; Buy and sell within campus</p>
   </footer>
 
+  <script src="products.js"></script>
+  <script src="shared.js"></script>
+  <script src="gallery.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
