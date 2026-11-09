@@ -159,20 +159,66 @@ function applyFilter() {
   Gallery.update(results);
 }
 
-for (var i = 0; i < PRODUCTS.length; i++) {
-  grid.appendChild(buildCard(PRODUCTS[i]));
-}
-var startQuery = new URLSearchParams(window.location.search).get("q");
-if (startQuery) {
-  searchBox.value = startQuery;
-}
-var startCat = new URLSearchParams(window.location.search).get("cat");
-if (startCat) {
-  categoryBox.value = startCat;
-  if (categoryBox.value !== startCat) {
-    categoryBox.value = "all";   // ignore a category name that does not exist
+var statusBox = document.getElementById("status");
+
+function showStatus(text, isError, retry) {
+  statusBox.textContent = text;
+  statusBox.classList.toggle("error", isError);
+  statusBox.hidden = false;
+  if (retry) {
+    var btn = makeEl("button", "retry-btn", "Try again");
+    btn.type = "button";
+    btn.addEventListener("click", startCatalog);
+    statusBox.appendChild(btn);
   }
 }
-searchBox.addEventListener("input", applyFilter);
-categoryBox.addEventListener("change", applyFilter);
-applyFilter();
+
+// order of events: show "Loading" -> await fetch -> check response.ok -> parse JSON
+// (all inside loadProducts) -> build the cards -> hook up filter and gallery
+async function startCatalog() {
+  showStatus("Loading products...", false, false);
+  Gallery.caption.textContent = "Loading images...";
+
+  var loaded = await loadProducts();
+
+  if (!loaded) {
+    // the rest of the page (nav, search box, styling, cart link) keeps working
+    showStatus("Sorry, we could not load the products. Check your connection and try again.", true, true);
+    grid.setAttribute("aria-busy", "false");
+    Gallery.caption.textContent = "Images unavailable.";
+    countText.textContent = "";
+    return;
+  }
+
+  statusBox.hidden = true;
+  while (grid.firstChild) {
+    grid.removeChild(grid.firstChild);
+  }
+  cards = {};
+  selected = {};
+  for (var i = 0; i < PRODUCTS.length; i++) {
+    grid.appendChild(buildCard(PRODUCTS[i]));
+  }
+  grid.setAttribute("aria-busy", "false");
+
+  var params = new URLSearchParams(window.location.search);
+  var startQuery = params.get("q");
+  if (startQuery) {
+    searchBox.value = startQuery;
+  }
+  var startCat = params.get("cat");
+  if (startCat) {
+    categoryBox.value = startCat;
+    if (categoryBox.value !== startCat) {
+      categoryBox.value = "all";   // ignore a category name that does not exist
+    }
+  }
+  applyFilter();   // filters the array that came back from fetch
+  updateSelectionTotal();
+}
+
+// these only need the DOM, not the data, so they are attached straight away
+searchBox.addEventListener("input", function () { if (PRODUCTS.length) { applyFilter(); } });
+categoryBox.addEventListener("change", function () { if (PRODUCTS.length) { applyFilter(); } });
+
+startCatalog();
