@@ -41,19 +41,21 @@
       <p class="count" id="count"></p>
     </section>
 
+    <p id="status" class="status" role="status" aria-live="polite">Loading products...</p>
+
     <section class="gallery" id="gallery" tabindex="0" aria-label="Gallery of the products currently shown">
       <figure>
-        <img id="galleryImg" src="images/calculator.jpeg" alt="Product photo">
+        <img id="galleryImg" src="" alt="" hidden>
         <figcaption id="galleryCaption"></figcaption>
       </figure>
       <div class="gallery-controls">
-        <button type="button" id="galleryPrev" aria-label="Previous picture">&larr;</button>
+        <button type="button" id="galleryPrev" aria-label="Previous picture" disabled>&larr;</button>
         <span id="galleryCount"></span>
-        <button type="button" id="galleryNext" aria-label="Next picture">&rarr;</button>
+        <button type="button" id="galleryNext" aria-label="Next picture" disabled>&rarr;</button>
       </div>
     </section>
 
-    <section class="products" id="productGrid" aria-label="Products"></section>
+    <section class="products" id="productGrid" aria-label="Products" aria-busy="true"></section>
 
     <p id="noResults" class="no-results">No products match your search.</p>
 
@@ -66,7 +68,7 @@
     <p>CampusMarket &copy; 2026 &middot; Buy and sell within campus</p>
   </footer>
 
-  <script src="products.js"></script>
+  <script src="data.js"></script>
   <script src="shared.js"></script>
   <script src="gallery.js"></script>
   <script src="app.js"></script>
