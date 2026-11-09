@@ -158,3 +158,9 @@ h2 { border: 0; font-size: 26px; letter-spacing: -.3px; color: var(--ink); margi
   .shots figure { padding: 6px; }
   .shots figcaption { font-size: 11px; }
 }
+
+/* Assignment 5: loading / failed-fetch messages */
+.status { padding: 14px 18px; margin: 0 0 20px; border-radius: 12px; background: #eef3ef; color: #33433a; font-weight: 600; }
+.status.error { background: #fdecec; color: #9b1c1c; border: 1px solid #f3c2c2; }
+.retry-btn { margin-left: 12px; padding: 6px 14px; border-radius: 999px; border: 1px solid currentColor; background: #fff; color: inherit; cursor: pointer; font-weight: 600; }
+.shots-note { grid-column: 1 / -1; color: #fff; font-size: 14px; margin: 0; }
