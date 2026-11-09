@@ -209,3 +209,13 @@ h2 { border: 0; font-size: 26px; letter-spacing: -.3px; color: var(--ink); margi
 @media (max-width: 860px) {
   .hero-shots { order: -1; }   /* picture first on small screens */
 }
+
+/* phone: brand name on two lines, Campus above Market */
+@media (max-width: 720px) {
+  .header-inner { flex-wrap: nowrap; }
+  .site-search.open { flex-basis: 100%; }
+  .brand-text strong span { display: block; line-height: 1.05; }
+  .brand-text strong { font-size: 17px; }
+  .brand-text small { display: none; }
+  .header-inner { flex-wrap: wrap; }
+}
