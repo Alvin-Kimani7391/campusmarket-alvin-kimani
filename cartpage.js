@@ -8,6 +8,7 @@ var summary = document.getElementById("cartSummary");
 var totalText = document.getElementById("cartTotal");
 var excludedNote = document.getElementById("excludedNote");
 var clearBtn = document.getElementById("clearBtn");
+var cartStatus = document.getElementById("cartStatus");
 
 var invalidIds = {};   // ids whose quantity box currently fails validation
 
@@ -26,7 +27,10 @@ function updateTotal() {
     if (invalidIds[cart[i].id]) {
       skipped = skipped + 1;   // left out until the quantity is fixed
     } else {
-      total = total + findProduct(cart[i].id).price * cart[i].qty;
+      var prod = findProduct(cart[i].id);
+      if (prod) {
+        total = total + prod.price * cart[i].qty;
+      }
     }
   }
   totalText.textContent = "Total: KSh " + total.toLocaleString();
@@ -145,7 +149,9 @@ function renderCart() {
     itemsBox.removeChild(itemsBox.firstChild);
   }
   for (var i = 0; i < cart.length; i++) {
-    itemsBox.appendChild(buildRow(cart[i]));
+    if (findProduct(cart[i].id)) {   // skip anything the product list no longer has
+      itemsBox.appendChild(buildRow(cart[i]));
+    }
   }
   if (cart.length === 0) {
     emptyMsg.classList.add("show");
@@ -176,4 +182,26 @@ clearBtn.addEventListener("click", function () {
   }
 });
 
-renderCart();
+// wait for the product list (fetch), then draw the cart
+async function startCart() {
+  cartStatus.textContent = "Loading your cart...";
+  cartStatus.classList.remove("error");
+  cartStatus.hidden = false;
+  emptyMsg.classList.remove("show");
+  summary.hidden = true;
+
+  var loaded = await loadProducts();
+  if (!loaded) {
+    cartStatus.textContent = "Sorry, we could not load product details for your cart. ";
+    cartStatus.classList.add("error");
+    var btn = makeEl("button", "retry-btn", "Try again");
+    btn.type = "button";
+    btn.addEventListener("click", startCart);
+    cartStatus.appendChild(btn);
+    return;
+  }
+  cartStatus.hidden = true;
+  renderCart();
+}
+
+startCart();
