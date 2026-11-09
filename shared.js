@@ -97,3 +97,32 @@ siteForm.addEventListener("submit", function (event) {
     window.location.href = "catalog.html?q=" + encodeURIComponent(document.getElementById("search").value.trim());
   }
 });
+
+// phone header: hamburger opens the menu, the Search button shows or hides the search box
+var menuBtn = document.getElementById("menuBtn");
+var mobileMenu = document.getElementById("mobileMenu");
+var searchToggle = document.getElementById("searchToggle");
+
+menuBtn.addEventListener("click", function () {
+  var open = mobileMenu.hidden;   // hidden now means it is about to open
+  mobileMenu.hidden = !open;
+  menuBtn.setAttribute("aria-expanded", String(open));
+  menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+});
+
+searchToggle.addEventListener("click", function () {
+  var open = !siteForm.classList.contains("open");
+  siteForm.classList.toggle("open", open);
+  searchToggle.setAttribute("aria-expanded", String(open));
+  if (open) {
+    document.getElementById("search").focus();
+  }
+});
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape" && !mobileMenu.hidden) {
+    mobileMenu.hidden = true;
+    menuBtn.setAttribute("aria-expanded", "false");
+    menuBtn.focus();
+  }
+});
